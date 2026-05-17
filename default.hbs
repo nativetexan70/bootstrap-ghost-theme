@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}"
+      data-color-mode="{{@custom.color_mode}}"
+      data-scheme="{{@custom.color_scheme}}"
+      data-show-portal="{{@custom.show_ghost_portal}}">
+<head>
+    <meta charset="UTF-8">
+    <title>{{meta_title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="{{@site.icon}}" type="image/png">
+    <link rel="canonical" href="{{url absolute="true"}}">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+    {{!-- Bootstrap 5 + icon sets --}}
+    <link rel="stylesheet" href="{{asset "vendor/bootstrap/bootstrap.min.css"}}">
+    <link rel="stylesheet" href="{{asset "vendor/bootstrap-icons/bootstrap-icons.min.css"}}">
+    <link rel="stylesheet" href="{{asset "vendor/font-awesome/css/all.min.css"}}">
+
+    {{!-- Theme CSS --}}
+    <link rel="stylesheet" href="{{asset "built/screen.css"}}">
+
+    {{!-- Fonts loaded automatically by Ghost's font system --}}
+
+    {{!-- Font + type-scale tokens --}}
+    <style id="theme-tokens">
+        :root {
+            --site-accent-color: {{@site.accent_color}};
+            --serif: var(--gh-font-heading, Georgia, serif);
+            --sans:  var(--gh-font-body, -apple-system, BlinkMacSystemFont, sans-serif);
+        }
+        body { font-family: var(--sans); }
+        h1, h2, h3, h4, h5, h6,
+        .display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+        .serif { font-family: var(--serif); }
+
+        {{#match @custom.type_scale "=" "Compact"}}
+        html { font-size: 15px; }
+        .gh-content { font-size: 1.0625rem; line-height: 1.65; }
+        {{/match}}
+        {{#match @custom.type_scale "=" "Comfortable"}}
+        html { font-size: 17px; }
+        .gh-content { font-size: 1.1875rem; line-height: 1.8; }
+        {{/match}}
+        {{#match @custom.type_scale "=" "Editorial"}}
+        html { font-size: 18px; }
+        .gh-content { font-size: 1.25rem; line-height: 1.85; }
+        {{/match}}
+    </style>
+
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}} d-flex flex-column min-vh-100"
+      data-post-card-layout="{{@custom.post_card_layout}}">
+
+    {{> "site-header"}}
+
+    <main id="site-main" class="flex-grow-1">
+        {{{body}}}
+    </main>
+
+    {{> "site-footer"}}
+
+    <script src="{{asset "vendor/bootstrap/bootstrap.bundle.min.js"}}"></script>
+    <script src="{{asset "vendor/reframe/reframe.min.js"}}"></script>
+    <link rel="stylesheet" href="{{asset "vendor/lightbox2/css/lightbox.min.css"}}">
+    <script src="{{asset "vendor/lightbox2/js/lightbox-plus-jquery.min.js"}}"></script>
+    <script src="{{asset "built/theme.js"}}"></script>
+
+    {{ghost_foot}}
+</body>
+</html>

@@ -1,0 +1,34 @@
+{{!-- Custom pagination using Bootstrap pagination component --}}
+{{#if pagination.pages}}
+<nav class="pagination-wrap mt-5 pt-4 border-top" aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+        {{#if prev}}
+            <li class="page-item">
+                <a class="page-link" href="{{page_url prev}}" aria-label="Previous">
+                    <i class="bi bi-arrow-left"></i> Newer
+                </a>
+            </li>
+        {{else}}
+            <li class="page-item disabled">
+                <span class="page-link"><i class="bi bi-arrow-left"></i> Newer</span>
+            </li>
+        {{/if}}
+
+        <li class="page-item disabled">
+            <span class="page-link bg-transparent border-0">Page {{page}} of {{pages}}</span>
+        </li>
+
+        {{#if next}}
+            <li class="page-item">
+                <a class="page-link" href="{{page_url next}}" aria-label="Next">
+                    Older <i class="bi bi-arrow-right"></i>
+                </a>
+            </li>
+        {{else}}
+            <li class="page-item disabled">
+                <span class="page-link">Older <i class="bi bi-arrow-right"></i></span>
+            </li>
+        {{/if}}
+    </ul>
+</nav>
+{{/if}}

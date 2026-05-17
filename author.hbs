@@ -1,0 +1,34 @@
+{{!< default}}
+
+{{#author}}
+<header class="author-header py-5 border-bottom">
+    <div class="container py-4">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                {{#if profile_image}}
+                    <img src="{{img_url profile_image size="m"}}" alt="{{name}}" class="rounded-circle mb-4" width="120" height="120">
+                {{/if}}
+                <h1 class="display-5 serif mb-3">{{name}}</h1>
+                {{#if bio}}
+                    <p class="lead text-secondary mb-3">{{bio}}</p>
+                {{/if}}
+                <ul class="list-inline text-muted small mb-0">
+                    {{#if location}}<li class="list-inline-item me-3"><i class="bi bi-geo-alt"></i> {{location}}</li>{{/if}}
+                    {{#if website}}<li class="list-inline-item me-3"><a href="{{website}}" class="text-reset"><i class="bi bi-link-45deg"></i> Website</a></li>{{/if}}
+                    {{#if twitter}}<li class="list-inline-item me-3"><a href="https://twitter.com/{{twitter}}" target="_blank" rel="noopener" class="text-reset"><i class="bi bi-twitter-x"></i> {{twitter}}</a></li>{{/if}}
+                    {{#if facebook}}<li class="list-inline-item"><a href="https://www.facebook.com/{{facebook}}" target="_blank" rel="noopener" class="text-reset"><i class="bi bi-facebook"></i></a></li>{{/if}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+{{/author}}
+
+<div class="container py-5">
+    <div class="post-feed-grid d-flex flex-column gap-3">
+        {{#foreach posts}}
+            {{> "post-card"}}
+        {{/foreach}}
+    </div>
+    {{pagination}}
+</div>

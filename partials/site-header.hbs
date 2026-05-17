@@ -1,0 +1,80 @@
+{{!-- Site header — primary nav + secondary social nav --}}
+{{!-- Logo is positioned on the left (fixed layout) --}}
+<header class="site-header sticky-top border-bottom" id="site-header">
+
+    {{!-- Top utility bar: secondary nav --}}
+    {{#if @site.secondary_navigation}}
+    <div class="site-header-top border-bottom small">
+        <div class="container d-flex justify-content-between align-items-center py-2">
+            <p class="text-muted mb-0 d-none d-md-block letter-spacing text-uppercase" style="font-size:.7rem;">
+                {{#if @site.description}}{{@site.description}}{{/if}}
+            </p>
+            <ul class="list-inline mb-0 ms-auto secondary-nav d-flex align-items-center gap-3">
+                {{#foreach @site.secondary_navigation}}
+                    <li class="list-inline-item m-0">
+                        <a href="{{this.url}}"
+                           class="secondary-nav-link"
+                           rel="noopener"
+                           aria-label="{{this.label}}"
+                           title="{{this.label}}">
+                            <i class="fa-solid fa-link"></i>
+                            <span class="visually-hidden">{{label}}</span>
+                        </a>
+                    </li>
+                {{/foreach}}
+            </ul>
+        </div>
+    </div>
+    {{/if}}
+
+    {{!-- Primary nav --}}
+    <nav class="navbar navbar-expand-lg py-3" id="mainNavbar">
+        <div class="container">
+
+            {{!-- Brand: shown left by default; JS moves it for logo-in-middle --}}
+            <a class="navbar-brand d-flex align-items-center" href="{{@site.url}}" id="site-brand">
+                {{#if @site.logo}}
+                    <img src="{{@site.logo}}" alt="{{@site.title}}" height="50em" class="me-2">
+                {{else}}
+                    <span class="brand-mark me-2"></span>
+                    <span class="serif fw-semibold">{{@site.title}}</span>
+                {{/if}}
+            </a>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav">
+                <i class="bi bi-list fs-3"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                {{!-- Left nav items (for logo-in-middle: first half of links go here) --}}
+                <ul class="navbar-nav nav-left align-items-lg-center gap-lg-1" id="navLeft"></ul>
+
+                {{!-- Centre logo slot (only visible when logo-in-middle is active) --}}
+                <div class="navbar-brand-center d-none mx-auto" id="navBrandCenter"></div>
+
+                {{!-- Right nav items + auth --}}
+                <ul class="navbar-nav nav-right ms-auto align-items-lg-center gap-lg-1" id="navRight">
+                    {{!-- Raw nav data — JS builds dropdowns from "Parent-Child" labels --}}
+                    {{#foreach @site.navigation}}
+                        <li class="nav-item nav-item-raw"
+                            data-nav-label="{{label}}"
+                            data-nav-url="{{this.url}}"></li>
+                    {{/foreach}}
+
+                    {{#unless @member}}
+                        <li class="nav-item">
+                            <a class="btn btn-dark pill px-3"
+                                href="#/portal/signin" data-portal="signin">Sign in</a>
+                        </li>
+                    {{else}}
+                        <li class="nav-item">
+                            <a class="btn btn-dark pill px-3"
+                                href="#/portal/account" data-portal="account">Account</a>
+                        </li>
+                    {{/unless}}
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</header>

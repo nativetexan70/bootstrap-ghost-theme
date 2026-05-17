@@ -1,0 +1,59 @@
+{{!-- Sidebar: Calendar (Agenda) · Newsletter CTA · Recommendations --}}
+<div class="sidebar">
+
+    {{!-- 1. Google Calendar — Agenda view (URL set in default.hbs / theme.js fallback)
+         To customise the calendar, edit the data-base-url below or
+         replace it with a Ghost code-injection snippet. --}}
+    {{#if @custom.show_calendar}}
+    <section class="sidebar-block bg-white border rounded-3 p-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+            <span class="accent-dot me-2"></span>
+            <h3 class="h6 text-uppercase letter-spacing mb-0">Upcoming events</h3>
+        </div>
+        <div class="calendar-embed rounded-2 overflow-hidden border"
+             data-base-url="https://calendar.google.com/calendar/embed?src={{@custom.calendar_source_url}}&ctz=UTC">
+            <iframe src="https://calendar.google.com/calendar/embed?src={{@custom.calendar_source_url}}&ctz=UTC&mode=AGENDA&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
+                    title="Events agenda"
+                    style="border: 0; width: 100%; height: 480px;"
+                    loading="lazy" allowfullscreen></iframe>
+        </div>
+    </section>
+    {{/if}}
+
+    {{!-- 2. Newsletter CTA --}}
+    {{#unless @member}}
+    <section class="sidebar-block sidebar-cta rounded-3 p-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-envelope-paper text-accent fs-4 me-2"></i>
+            <h3 class="h6 text-uppercase letter-spacing mb-0">{{@custom.newsletter_cta_heading}}</h3>
+        </div>
+        <p class="serif fs-5 lh-sm mb-3">{{@custom.newsletter_cta_description}}</p>
+        <p class="text-secondary small mb-3">{{@custom.newsletter_cta_disclaimer}}</p>
+        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
+        <a href="#/portal/signup" class="btn btn-dark pill px-3" data-portal="signup">
+            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+        {{/match}}
+        {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
+        <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-dark pill px-3">
+            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+        {{/match}}
+        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
+        <a href="#/portal/signup/free" class="btn btn-dark pill px-3" data-portal="signup">
+            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+        {{/match}}
+    </section>
+    {{/unless}}
+
+    {{!-- 3. Recommendations --}}
+    <section class="sidebar-block bg-white border rounded-3 p-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+            <span class="accent-dot me-2"></span>
+            <h3 class="h6 text-uppercase letter-spacing mb-0">Recommended Sites</h3>
+        </div>
+        {{recommendations}}
+    </section>
+
+</div>

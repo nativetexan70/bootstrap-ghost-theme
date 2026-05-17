@@ -1,0 +1,76 @@
+{{!< default}}
+
+{{#post}}
+<article class="post-full">
+
+    {{!-- Header card (image + meta in featured-card format) --}}
+    <div class="container py-5">
+        {{> "post-header-card"}}
+    </div>
+
+    {{!-- Post body --}}
+    <div class="post-content pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="gh-content">
+                        {{content}}
+                    </div>
+
+                    {{#if tags}}
+                        <div class="post-tags mt-5 pt-4 border-top">
+                            {{#foreach tags}}
+                                <a href="{{url}}" class="badge rounded-pill text-bg-light text-decoration-none me-1 mb-1 px-3 py-2">#{{name}}</a>
+                            {{/foreach}}
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{!-- Author bio --}}
+    {{#primary_author}}
+    <section class="author-card py-5 border-top">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-4">
+                        {{#if profile_image}}
+                            <img src="{{img_url profile_image size="s"}}" alt="{{name}}" class="rounded-circle flex-shrink-0" width="80" height="80">
+                        {{/if}}
+                        <div>
+                            <p class="text-uppercase small letter-spacing text-muted mb-1">Written by</p>
+                            <h3 class="h4 mb-2"><a href="{{url}}" class="text-reset text-decoration-none">{{name}}</a></h3>
+                            {{#if bio}}
+                                <p class="text-secondary mb-0">{{bio}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/primary_author}}
+
+</article>
+
+{{!-- Read next --}}
+<section class="read-next py-5 border-top">
+    <div class="container">
+        <div class="d-flex align-items-center mb-4">
+            <span class="accent-dot me-2"></span>
+            <h2 class="h6 text-uppercase letter-spacing mb-0">Read next</h2>
+        </div>
+        <div class="row g-4">
+            {{#prev_post}}
+                <div class="col-md-6">{{> "post-card"}}</div>
+            {{/prev_post}}
+            {{#next_post}}
+                <div class="col-md-6">{{> "post-card"}}</div>
+            {{/next_post}}
+        </div>
+    </div>
+</section>
+
+{{/post}}

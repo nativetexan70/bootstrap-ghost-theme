@@ -1,0 +1,24 @@
+
+{{#if recommendations}}
+    <ul class="list-unstyled mb-0">
+        {{#foreach recommendations as |rec|}}
+            <li class="recommendation py-3 {{#unless @last}}border-bottom{{/unless}}">
+                <a href="{{rec.url}}" target="_blank" rel="noopener" class="d-flex gap-3 text-reset text-decoration-none">
+                    {{#if rec.favicon}}
+                        <img src="{{rec.favicon}}" alt="" width="32" height="32" class="rounded-2 flex-shrink-0">
+                    {{else}}
+                        <span class="brand-mark flex-shrink-0" style="width:32px;height:32px;border-radius:6px;"></span>
+                    {{/if}}
+                    <div class="flex-grow-1 min-w-0">
+                        <p class="serif fw-semibold mb-1 text-truncate">{{rec.title}}</p>
+                        {{#if rec.description}}
+                            <p class="small text-secondary mb-0" style="display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">{{rec.description}}</p>
+                        {{/if}}
+                    </div>
+                </a>
+            </li>
+        {{/foreach}}
+    </ul>
+{{else}}
+    <p class="text-secondary small mb-0">No recommendations yet — add some in <strong>Ghost Admin → Settings → Recommendations</strong>.</p>
+{{/if}}

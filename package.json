@@ -1,0 +1,152 @@
+{
+  "name": "bootstrap-ghost",
+  "description": "Mobile-first Bootstrap 5.3 theme for Ghost with locally vendored assets, responsive cards, and zero CDN dependencies. Fully offline-capable with customizable color schemes and typography.",
+  "demo": "https://localhost:2368",
+  "version": "1.6.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "John Schroeder",
+    "email": "john@personalcyber.com"
+  },
+  "keywords": ["ghost", "ghost-theme", "bootstrap"],
+  "config": {
+    "posts_per_page": 6,
+    "image_sizes": {
+      "xxs": { "width": 30 },
+      "xs":  { "width": 100 },
+      "s":   { "width": 300 },
+      "m":   { "width": 600 },
+      "l":   { "width": 1000 },
+      "xl":  { "width": 2000 }
+    },
+    "card_assets": true,
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "Warm Parchment",
+          "Slate & Stone",
+          "Midnight Ink",
+          "Forest & Moss",
+          "Graphite Studio",
+          "Ocean Depth"
+        ],
+        "default": "Warm Parchment",
+        "description": "Choose a colour palette for the site.",
+        "group": "site-wide"
+      },
+      "color_mode": {
+        "type": "select",
+        "options": ["Light", "Dark", "Auto"],
+        "default": "Light",
+        "description": "Light forces the chosen scheme; Dark inverts it; Auto follows the visitor's OS preference.",
+        "group": "site-wide"
+      },
+      "type_scale": {
+        "type": "select",
+        "options": ["Compact", "Standard", "Comfortable", "Editorial"],
+        "default": "Standard",
+        "description": "Affects base font size and line-height.",
+        "group": "site-wide"
+      },
+      "post_card_layout": {
+        "type": "select",
+        "options": ["Horizontal", "Vertical grid"],
+        "default": "Horizontal",
+        "description": "How post cards are displayed in feed and archive pages.",
+        "group": "site-wide"
+      },
+      "show_sidebar": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the right-hand sidebar on the home page.",
+        "group": "site-wide"
+      },
+      "show_calendar": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the Google Calendar agenda block in the sidebar.",
+        "group": "site-wide"
+      },
+      "calendar_source_url": {
+        "type": "text",
+        "default": "en.usa%23holiday%40group.v.calendar.google.com",
+        "description": "Google Calendar ID for the events calendar (without the full URL).",
+        "group": "site-wide"
+      },
+      "show_powered_by_ghost": {
+        "type": "boolean",
+        "default": true,
+        "group": "site-wide"
+      },
+      "show_ghost_portal": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the Ghost Portal signup button (bottom-right corner).",
+        "group": "site-wide"
+      },
+      "show_publication_cover": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the hero banner on the home page.",
+        "group": "homepage"
+      },
+      "show_featured_section": {
+        "type": "boolean",
+        "default": true,
+        "description": "Show the rotating Featured carousel on the home page.",
+        "group": "homepage"
+      },
+      "carousel_interval_seconds": {
+        "type": "select",
+        "options": ["3", "5", "7", "10", "Off"],
+        "default": "5",
+        "description": "How often the featured carousel rotates.",
+        "group": "homepage"
+      },
+      "newsletter_cta_heading": {
+        "type": "text",
+        "default": "Join the list",
+        "description": "Heading text for the newsletter signup CTA in the sidebar.",
+        "group": "newsletter"
+      },
+      "newsletter_cta_description": {
+        "type": "text",
+        "default": "New posts, in your inbox — most Tuesdays.",
+        "description": "Description text for the newsletter signup CTA.",
+        "group": "newsletter"
+      },
+      "newsletter_cta_disclaimer": {
+        "type": "text",
+        "default": "No spam, no tracking. Unsubscribe in one click.",
+        "description": "Disclaimer text below the newsletter description.",
+        "group": "newsletter"
+      },
+      "newsletter_cta_button_text": {
+        "type": "text",
+        "default": "Subscribe",
+        "description": "Text for the newsletter signup button.",
+        "group": "newsletter"
+      },
+      "newsletter_cta_button_action": {
+        "type": "select",
+        "options": ["Portal signup – free", "Portal signup – paid", "Custom link"],
+        "default": "Portal signup – free",
+        "description": "What happens when the subscriber clicks the CTA button.",
+        "group": "newsletter"
+      },
+      "newsletter_cta_button_url": {
+        "type": "text",
+        "default": "",
+        "description": "URL to open when 'Custom link' is selected (opens in a new tab).",
+        "group": "newsletter"
+      }
+    }
+  },
+  "scripts": {
+    "zip": "zip -r bootstrap-ghost.zip . -x \"*.git*\" \"node_modules/*\" \"*.zip\""
+  }
+}

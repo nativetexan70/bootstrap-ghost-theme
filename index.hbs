@@ -1,0 +1,156 @@
+{{!< default}}
+
+{{#is "home"}}
+    {{#if @custom.show_publication_cover}}
+    {{#if @site.cover_image}}
+    {{!-- Brand cover image: full-bleed with overlay text --}}
+    <section class="site-hero site-hero-cover border-bottom"
+             style="background-image: url('{{img_url @site.cover_image size="xl"}}');">
+        <div class="site-hero-overlay"></div>
+        <div class="container py-5 py-lg-6 position-relative">
+            <div class="row justify-content-center text-center py-4 py-lg-5">
+                <div class="col-lg-8">
+                    <h1 class="display-3 serif mb-4 text-white">{{@site.title}}</h1>
+                    {{#if @site.description}}
+                        <p class="lead mb-4" style="color:rgba(255,255,255,.85);">{{@site.description}}</p>
+                    {{/if}}
+                    {{#unless @member}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
+                        <a href="#/portal/signup" class="btn btn-dark pill px-3" data-portal="signup">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
+                        <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-dark pill px-3">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
+                        <a href="#/portal/signup/free" class="btn btn-dark pill px-3" data-portal="signup">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+    </section>
+    {{else}}
+    {{!-- No cover image: gradient hero --}}
+    <section class="site-hero py-5 py-lg-6 border-bottom">
+        <div class="container py-4 py-lg-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="display-3 serif mb-4">{{@site.title}}</h1>
+                    {{#if @site.description}}
+                        <p class="lead text-secondary mb-4">{{@site.description}}</p>
+                    {{/if}}
+                    {{#unless @member}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
+                        <a href="#/portal/signup" class="btn btn-dark pill px-3" data-portal="signup">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
+                        <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-dark pill px-3">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
+                        <a href="#/portal/signup/free" class="btn btn-dark pill px-3" data-portal="signup">
+                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                        {{/match}}
+                    {{/unless}}
+                </div>
+            </div>
+        </div>
+    </section>
+    {{/if}}
+    {{/if}}
+{{/is}}
+
+<div class="container py-5">
+
+    {{!-- ===================== FEATURED CAROUSEL ===================== --}}
+    {{#is "home"}}
+        {{#if @custom.show_featured_section}}
+            {{#get "posts" filter="featured:true" limit="6" include="authors,tags" as |featured|}}
+                {{#if featured}}
+                    <section class="featured-section mb-5">
+                        <div class="d-flex align-items-center mb-4">
+                            <span class="accent-dot me-2"></span>
+                            <h2 class="h6 text-uppercase letter-spacing mb-0">Featured</h2>
+                        </div>
+
+                        <div id="featuredCarousel" class="carousel slide featured-carousel"
+                             data-bs-ride="carousel"
+                             data-carousel-seconds="{{#if @custom.carousel_interval_seconds}}{{@custom.carousel_interval_seconds}}{{else}}3{{/if}}"
+                             data-bs-pause="hover">
+                            {{#if featured.[1]}}
+                            <div class="carousel-indicators">
+                                {{#foreach featured}}
+                                    <button type="button"
+                                            data-bs-target="#featuredCarousel"
+                                            data-bs-slide-to="{{@index}}"
+                                            {{#if @first}}class="active" aria-current="true"{{/if}}
+                                            aria-label="Featured post {{@number}}"></button>
+                                {{/foreach}}
+                            </div>
+                            {{/if}}
+                            <div class="carousel-inner rounded-3 overflow-hidden">
+                                {{#foreach featured}}
+                                <div class="carousel-item {{#if @first}}active{{/if}}">
+                                    {{> "post-card-featured"}}
+                                </div>
+                                {{/foreach}}
+                            </div>
+                            {{#if featured.[1]}}
+                            <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+                                <span class="carousel-ctrl-icon"><i class="bi bi-arrow-left"></i></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+                                <span class="carousel-ctrl-icon"><i class="bi bi-arrow-right"></i></span>
+                            </button>
+                            {{/if}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+    {{/is}}
+
+    {{!-- ===================== FEED + SIDEBAR ===================== --}}
+    <div class="row gy-5 main-grid">
+
+        
+
+        <div class="{{#if @custom.show_sidebar}}col-12 col-lg-main{{else}}col-12{{/if}}">
+            <section class="post-feed">
+                <div class="d-flex align-items-center mb-4">
+                    <span class="accent-dot me-2"></span>
+                    <h2 class="h6 text-uppercase letter-spacing mb-0">
+                        {{#is "home"}}Latest{{else}}{{#is "tag"}}Posts in {{tag.name}}{{else}}{{#is "author"}}Written by {{primary_author.name}}{{else}}Posts{{/is}}{{/is}}{{/is}}
+                    </h2>
+                </div>
+
+                {{!-- Card layout driven by @custom.post_card_layout via data-post-card-layout on body --}}
+                <div class="post-feed-grid d-flex flex-column gap-3">
+                    {{#foreach posts}}
+                        {{> "post-card"}}
+                    {{/foreach}}
+                </div>
+
+                {{pagination}}
+            </section>
+        </div>
+
+        {{#if @custom.show_sidebar}}
+        <aside class="col-12 col-lg-side">
+            {{> "sidebar"}}
+        </aside>
+        {{/if}}
+
+    </div>
+
+</div>

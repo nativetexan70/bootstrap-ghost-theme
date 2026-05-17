@@ -1,0 +1,53 @@
+{{!-- Standard post card — horizontal layout (image left, content right) --}}
+<article class="post-card post-card-horizontal card border-0 rounded-3 overflow-hidden">
+    <a href="{{url}}" class="text-decoration-none text-reset d-block">
+        <div class="row g-0">
+
+            <div class="col-4 col-sm-3">
+                <div class="post-card-image-wrap bg-subtle h-100">
+                    {{#if feature_image}}
+                        <img src="{{img_url feature_image size="m"}}"
+                             srcset="{{img_url feature_image size="s"}} 300w,
+                                     {{img_url feature_image size="m"}} 600w"
+                             sizes="(max-width: 575px) 33vw, 200px"
+                             alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                             class="w-100 h-100 object-fit-cover post-card-image"
+                             loading="lazy">
+                    {{else}}
+                        <div class="d-flex align-items-center justify-content-center h-100 py-4">
+                            <span class="brand-mark brand-mark-lg"></span>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="col d-flex">
+                <div class="card-body d-flex flex-column p-3 p-md-4 flex-grow-1">
+                    {{#if primary_tag}}
+                        <p class="text-uppercase small letter-spacing text-accent mb-2">{{primary_tag.name}}</p>
+                    {{/if}}
+
+                    <h3 class="h5 serif mb-2 lh-sm">{{title}}</h3>
+
+                    {{#if excerpt}}
+                        <p class="text-secondary small mb-3 flex-grow-1 d-none d-sm-block">{{excerpt words="22"}}…</p>
+                    {{/if}}
+
+                    <div class="d-flex align-items-center gap-2 small text-muted mt-auto pt-2 border-top">
+                        {{#primary_author}}
+                            {{#if profile_image}}
+                                <img src="{{img_url profile_image size="xs"}}" alt="{{name}}" class="rounded-circle" width="20" height="20">
+                            {{/if}}
+                            <span>{{name}}</span>
+                        {{/primary_author}}
+                        <span>·</span>
+                        <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D"}}</time>
+                        <span>·</span>
+                        <span>{{reading_time}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </a>
+</article>

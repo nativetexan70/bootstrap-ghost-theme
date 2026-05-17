@@ -1,0 +1,27 @@
+{{!< default}}
+
+<section class="error-page py-5 my-5">
+    <div class="container py-5 text-center">
+        <p class="text-uppercase small letter-spacing text-accent mb-3">Error {{statusCode}}</p>
+        <h1 class="display-1 serif mb-4">{{message}}</h1>
+        <p class="lead text-secondary mb-4">Sorry, the page you were looking for can't be found.</p>
+        <a href="{{@site.url}}" class="btn btn-dark btn-lg px-4">Back to home</a>
+
+        {{#if errorDetails}}
+            <div class="text-start mt-5 mx-auto" style="max-width: 720px;">
+                {{#foreach errorDetails}}
+                    <div class="alert alert-warning">
+                        <strong>{{rule}}</strong>
+                        {{#if failures}}
+                            <ul class="mb-0 mt-2">
+                                {{#foreach failures}}
+                                    <li>{{ref}} {{message}}</li>
+                                {{/foreach}}
+                            </ul>
+                        {{/if}}
+                    </div>
+                {{/foreach}}
+            </div>
+        {{/if}}
+    </div>
+</section>

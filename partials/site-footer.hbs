@@ -1,0 +1,49 @@
+{{!-- Site footer --}}
+<footer class="site-footer text-light pt-5 mt-5">
+    <div class="container py-4">
+        <div class="row gy-4">
+
+            <div class="col-6">
+                <h6 class="text-uppercase letter-spacing small text-secondary mb-3">Explore</h6>
+                <ul class="list-unstyled">
+                    {{#foreach @site.secondary_navigation}}
+                        <li class="mb-2"><a href="{{this.url}}" class="text-light text-decoration-none opacity-75 hover-opacity">{{label}}</a></li>
+                    {{/foreach}}
+                </ul>
+            </div>
+
+            <div class="col-6">
+                <h6 class="text-uppercase letter-spacing small text-secondary mb-3">Subscribe</h6>
+                <p class="text-secondary small">Get the latest posts delivered to your inbox.</p>
+                {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
+                <a href="#/portal/signup" class="btn btn-light pill px-3" data-portal="signup">
+                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                {{/match}}
+                {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
+                <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-light pill px-3">
+                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                {{/match}}
+                {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
+                <a href="#/portal/signup/free" class="btn btn-light pill px-3" data-portal="signup">
+                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+                {{/match}}
+            </div>
+
+        </div>
+
+        <hr class="border-secondary opacity-25 my-4">
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center small text-secondary">
+            <p class="mb-2 mb-md-0">© {{date format="YYYY"}} {{@site.title}}. All rights reserved.</p>
+            <ul class="list-inline mb-0">
+                <li class="list-inline-item"><a href="{{@site.url}}/rss/" class="text-secondary" aria-label="RSS"><i class="fa-solid fa-rss"></i></a></li>
+                {{#if @custom.show_powered_by_ghost}}
+                    <li class="list-inline-item"><a href="https://ghost.org" class="text-secondary">Powered by Ghost</a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</footer>

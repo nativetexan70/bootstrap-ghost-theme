@@ -1,0 +1,25 @@
+{{!< default}}
+
+{{#post}}
+<article class="page-full">
+
+    {{!-- Header card (same format as featured posts) --}}
+    <div class="container py-5">
+        {{> "post-header-card"}}
+    </div>
+
+    {{!-- Page body --}}
+    <div class="page-content pb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="gh-content">
+                        {{content}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</article>
+{{/post}}
