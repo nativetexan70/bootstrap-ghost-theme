@@ -474,9 +474,12 @@
         const iframe = document.querySelector('#ghost-portal-root iframe');
         if (!iframe) return;
 
-        const w = parseFloat(iframe.style.width) || 0;
-        const h = parseFloat(iframe.style.height) || 0;
-        const isModal = w >= 600 || h >= 300;
+        const wStyle = iframe.style.width || '';
+        const hStyle = iframe.style.height || '';
+        const w = parseFloat(wStyle) || 0;
+        const h = parseFloat(hStyle) || 0;
+        // Ghost uses percentages for full-screen modal, px for the small button
+        const isModal = wStyle.includes('%') || hStyle.includes('%') || w >= 600 || h >= 300;
 
         // When portal button is hidden, only suppress the floating button — allow modal through
         if (!showPortal && !isModal) {
