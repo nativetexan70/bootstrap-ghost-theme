@@ -463,16 +463,6 @@
 (function () {
     const showPortal = document.documentElement.getAttribute('data-show-portal') !== 'false';
 
-    if (!showPortal) {
-        document.addEventListener('DOMContentLoaded', function () {
-            const root = document.getElementById('ghost-portal-root');
-            if (root) root.style.display = 'none';
-        });
-        const root = document.getElementById('ghost-portal-root');
-        if (root) root.style.display = 'none';
-        return;
-    }
-
     function getContainerRightGap() {
         const container = document.querySelector('.container');
         if (!container) return 0;
@@ -484,18 +474,27 @@
         const iframe = document.querySelector('#ghost-portal-root iframe');
         if (!iframe) return;
 
+        const w = parseFloat(iframe.style.width) || 0;
+        const h = parseFloat(iframe.style.height) || 0;
+        const isModal = w >= 600 || h >= 300;
+
+        // When portal button is hidden, only suppress the floating button — allow modal through
+        if (!showPortal && !isModal) {
+            iframe.style.visibility = 'hidden';
+            return;
+        }
+
         // Ensure root and iframe are visible with proper z-index
         if (root) {
             root.style.zIndex = '9999';
-            root.style.display = 'block';
+            root.style.display = '';
             root.style.visibility = 'visible';
         }
         iframe.style.zIndex = '9999';
+        iframe.style.visibility = 'visible';
 
-        const w = parseFloat(iframe.style.width) || 0;
-        const h = parseFloat(iframe.style.height) || 0;
         // Only reposition the button/notification state — leave the full modal alone
-        if (w < 600 && h < 300) {
+        if (!isModal && showPortal) {
             iframe.style.right = getContainerRightGap() + 'px';
         }
     }
