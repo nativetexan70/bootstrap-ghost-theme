@@ -480,8 +480,18 @@
     }
 
     function adjustPortalPosition() {
+        const root = document.getElementById('ghost-portal-root');
         const iframe = document.querySelector('#ghost-portal-root iframe');
         if (!iframe) return;
+
+        // Ensure root and iframe are visible with proper z-index
+        if (root) {
+            root.style.zIndex = '9999';
+            root.style.display = 'block';
+            root.style.visibility = 'visible';
+        }
+        iframe.style.zIndex = '9999';
+
         const w = parseFloat(iframe.style.width) || 0;
         const h = parseFloat(iframe.style.height) || 0;
         // Only reposition the button/notification state — leave the full modal alone
