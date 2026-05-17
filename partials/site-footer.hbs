@@ -15,21 +15,9 @@
             <div class="col-6">
                 <h6 class="text-uppercase letter-spacing small text-secondary mb-3">Subscribe</h6>
                 <p class="text-secondary small">Get the latest posts delivered to your inbox.</p>
-                {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
-                <a href="#/portal/signup" class="btn btn-light pill px-3" data-portal="signup">
-                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-                {{/match}}
-                {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
-                <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-light pill px-3">
-                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-                {{/match}}
-                {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
                 <a href="#/portal/signup/free" class="btn btn-light pill px-3" data-portal="signup">
-                    {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                    Join our Mailing List!<i class="bi bi-arrow-right ms-1"></i>
                 </a>
-                {{/match}}
             </div>
 
         </div>

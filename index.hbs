@@ -15,21 +15,9 @@
                         <p class="lead mb-4" style="color:rgba(255,255,255,.85);">{{@site.description}}</p>
                     {{/if}}
                     {{#unless @member}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
-                        <a href="#/portal/signup" class="btn btn-dark pill px-3" data-portal="signup">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
-                        {{/match}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
-                        <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-dark pill px-3">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
-                        {{/match}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
                         <a href="#/portal/signup/free" class="btn btn-dark pill px-3" data-portal="signup">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                            Join Our Mailing List! <i class="bi bi-arrow-right ms-1"></i>
                         </a>
-                        {{/match}}
                     {{/unless}}
                 </div>
             </div>
@@ -46,21 +34,9 @@
                         <p class="lead text-secondary mb-4">{{@site.description}}</p>
                     {{/if}}
                     {{#unless @member}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – paid"}}
-                        <a href="#/portal/signup" class="btn btn-dark pill px-3" data-portal="signup">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
-                        {{/match}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Custom link"}}
-                        <a href="{{@custom.newsletter_cta_button_url}}" target="_blank" rel="noopener noreferrer" class="btn btn-dark pill px-3">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
-                        </a>
-                        {{/match}}
-                        {{#match @custom.newsletter_cta_button_action "=" "Portal signup – free"}}
                         <a href="#/portal/signup/free" class="btn btn-dark pill px-3" data-portal="signup">
-                            {{@custom.newsletter_cta_button_text}} <i class="bi bi-arrow-right ms-1"></i>
+                            Join Our Mailing List! <i class="bi bi-arrow-right ms-1"></i>
                         </a>
-                        {{/match}}
                     {{/unless}}
                 </div>
             </div>
