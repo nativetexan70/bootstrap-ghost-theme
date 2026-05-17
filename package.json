@@ -1,8 +1,8 @@
 {
   "name": "bootstrap-ghost",
-  "description": "Mobile-first Bootstrap 5.3 theme for Ghost with locally vendored assets, responsive cards, and zero CDN dependencies. Fully offline-capable with customizable color schemes and typography.",
+  "description": "Mobile-first Bootstrap 5.3 theme for Ghost built for the Paso Robles Democratic Club. Locally vendored assets, responsive cards, zero CDN dependencies. Features configurable color schemes, Ghost Portal integration, Google Calendar sidebar, and featured post carousel.",
   "demo": "https://localhost:2368",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "engines": {
     "ghost": ">=5.0.0"
   },

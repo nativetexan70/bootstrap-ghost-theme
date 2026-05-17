@@ -46,8 +46,11 @@ Ghost CMS → Handlebars templates → Browser → theme.js applies runtime over
 - `type_scale` — font size tokens applied inline in `default.hbs` via `{{#match}}` helpers
 - `post_card_layout` — "Horizontal" (default) or "Vertical grid"; layout switching is handled entirely in JS
 - `show_sidebar`, `show_calendar`, `show_featured_section`, `show_publication_cover` — boolean toggles
+- `show_ghost_portal` — hides the floating Ghost Portal button (bottom-right corner). **Important:** disabling this only hides the floating trigger; the full signup modal still opens when visitors click any `data-portal` CTA button. Implemented in `theme.js` by setting `visibility:hidden` on the small iframe state while allowing the full-screen modal through.
 
 **Navigation system:** Ghost Admin navigation items use a `"Parent-Child"` label convention (dash-separated). `theme.js` section 6 (`buildPrimaryNav`) parses raw `data-nav-label`/`data-nav-url` attributes from `.nav-item-raw` elements and builds Bootstrap dropdown DOM at runtime. Do not add nav markup to `site-header.hbs` manually — add items through Ghost Admin navigation.
+
+**Mobile navigation:** Uses Bootstrap `navbar-collapse` (standard collapsible navbar), not the offcanvas drawer. The toggler targets `#mainNav` with `data-bs-toggle="collapse"`. Mobile nav closes automatically after clicking a link (handled in `theme.js`).
 
 **Vendored assets** (locally hosted in `assets/vendor/`):
 - Bootstrap 5.3.3 CSS + JS bundle
