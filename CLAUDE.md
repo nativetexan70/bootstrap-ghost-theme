@@ -77,3 +77,9 @@ All external dependencies are locally hosted — **zero CDN requests at runtime*
 **Ghost image sizing:** Use `{{img_url feature_image size="m"}}` etc., matching the sizes defined in `package.json → config.image_sizes`.
 
 **Member gating:** Use `data-portal="signup|signin|account"` attributes on links/buttons — Ghost Portal intercepts these automatically.
+
+**Koenig bookmark card layout:** Ghost renders the bookmark card as `figure.kg-bookmark-card > a.kg-bookmark-container > (div.kg-bookmark-content + div.kg-bookmark-thumbnail)`. The flex layout (row/column) must be set on `.kg-bookmark-container` — not `.kg-bookmark-card`. The card `<figure>` only has one flex child (the container), so flex-direction on the card has no effect on content/thumbnail layout.
+
+**Koenig card mobile overrides (`@media (max-width: 767px)`):** The responsive type block in `screen.css` handles heading scale-down (`h2`, `h3`), gallery image min-width reduction, button tap-target sizing (`kg-btn`), and bookmark card column stacking (`kg-bookmark-container`). Touch hover states (e.g. `kg-bookmark-card:hover`) are wrapped in `@media (hover: hover)` to prevent sticky states on touch devices.
+
+**Site header background:** `.site-header` uses `color-mix(in srgb, var(--bs-body-bg) 88%, var(--bs-body-color) 12%)` at `opacity: 0.92` with `backdrop-filter: blur(8px)` for a frosted-glass effect slightly darker than the page background. Adjust the `12%` body-color mix and opacity values to tune contrast.

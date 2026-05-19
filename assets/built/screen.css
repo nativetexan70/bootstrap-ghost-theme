@@ -79,7 +79,8 @@ p { text-wrap: pretty; }
 /* ---------- Header ---------- */
 .site-header {
     backdrop-filter: saturate(180%) blur(8px);
-    background-color: color-mix(in srgb, var(--bs-body-bg) 92%, transparent 8%) !important;
+    background-color: color-mix(in srgb, var(--bs-body-bg) 88%, var(--bs-body-color) 12%) !important;
+    opacity: 0.92;
 }
 .navbar-brand .serif { font-size: 1.25rem; }
 .nav-link {
@@ -474,8 +475,8 @@ p { text-wrap: pretty; }
 .gh-content pre code { background: none; padding: 0; color: inherit; }
 .gh-content hr {
     margin: 3em auto;
-    width: 30%;
-    border-top: 1px solid var(--rule);
+    width: 80%;
+    border-top: 1px solid var(--bs-body-color);
 }
 .gh-content a {
     color: var(--accent);
@@ -598,9 +599,11 @@ p { text-wrap: pretty; }
     transition: transform .2s ease, box-shadow .2s ease;
     width: 100%;
 }
-.gh-content .kg-bookmark-card:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 18px 40px rgba(0,0,0,.08);
+@media (hover: hover) {
+    .gh-content .kg-bookmark-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 40px rgba(0,0,0,.08);
+    }
 }
 .gh-content .kg-bookmark-content {
     flex: 1 1 0;
@@ -608,6 +611,7 @@ p { text-wrap: pretty; }
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    padding: 1.25rem;
 }
 .gh-content .kg-bookmark-title {
     font-weight: 700;
@@ -637,14 +641,20 @@ p { text-wrap: pretty; }
 }
 
 @media (max-width: 767px) {
-    .gh-content .kg-bookmark-card {
+    .gh-content .kg-bookmark-container {
         flex-direction: column;
-        padding: 1rem;
     }
     .gh-content .kg-bookmark-thumbnail {
+        order: -1;
         width: 100%;
+        min-width: 0;
         flex: 0 0 auto;
         height: 180px;
+        border-radius: .75rem .75rem 0 0;
+    }
+    .gh-content .kg-bookmark-content {
+        flex: 0 0 auto;
+        padding: 1rem;
     }
 }
 
@@ -666,6 +676,7 @@ p { text-wrap: pretty; }
     border: 1px solid var(--rule);
     border-radius: .5rem;
     padding: 1rem;
+    overflow-wrap: break-word;
 }
 .gh-content .kg-toggle-heading { font-weight: 600; cursor: pointer; }
 
@@ -687,9 +698,15 @@ p { text-wrap: pretty; }
     .display-3 { font-size: 2.5rem; }
     .display-4 { font-size: 2.25rem; }
     .gh-content { font-size: 1.0625rem; }
+    .gh-content h2 { font-size: 1.6rem; }
+    .gh-content h3 { font-size: 1.25rem; }
+    .gh-content blockquote { padding-left: .75em; }
+    .gh-content .kg-width-regular { width: 100%; }
     .gh-content .kg-width-full,
     .gh-content .kg-image-card.kg-width-full { width: 100% !important; margin-inline: 0; }
     .gh-content .kg-image-card { width: 100% !important; margin-inline: 0; }
+    .gh-content .kg-gallery-image { min-width: 140px; min-height: 160px; }
+    .gh-content .kg-btn { min-height: 44px; padding: .7em 1.6em; }
 }
 
 /* ---------- Footer ---------- */
