@@ -1,13 +1,13 @@
 # Design: Vendor All CDN Assets Locally
 
 **Date:** 2026-05-15
-**Status:** Approved
+**Status:** Completed
 
 ## Goal
 
 Replace all externally-loaded CDN resources (CSS, JS, fonts, images) with locally-hosted copies under `assets/vendor/`, so the theme works fully offline and has no third-party dependencies at runtime.
 
-## Assets to Vendor
+## Assets Vendored
 
 | Library | Version | CDN Source | Type |
 |---|---|---|---|
@@ -30,14 +30,24 @@ assets/vendor/
 │       ├── bootstrap-icons.woff
 │       └── bootstrap-icons.woff2
 ├── font-awesome/
-│   ├── all.min.css
+│   ├── css/
+│   │   └── all.min.css
 │   └── webfonts/
-│       └── (all fa-*.woff2 and fa-*.ttf variants)
+│       ├── fa-brands-400.ttf
+│       ├── fa-brands-400.woff2
+│       ├── fa-regular-400.ttf
+│       ├── fa-regular-400.woff2
+│       ├── fa-solid-900.ttf
+│       ├── fa-solid-900.woff2
+│       ├── fa-v4compatibility.ttf
+│       └── fa-v4compatibility.woff2
 ├── reframe/
 │   └── reframe.min.js
 └── lightbox2/
-    ├── lightbox.min.css
-    ├── lightbox-plus-jquery.min.js
+    ├── css/
+    │   └── lightbox.min.css
+    ├── js/
+    │   └── lightbox-plus-jquery.min.js
     └── images/
         ├── close.png
         ├── loading.gif
@@ -50,12 +60,12 @@ assets/vendor/
 Each library's CSS uses relative paths to reference its fonts/images (e.g., `../fonts/`, `../webfonts/`, `../images/`). By placing the CSS file and its assets in a subdirectory that mirrors the library's own dist structure, the relative paths remain valid without any CSS rewriting.
 
 - Bootstrap Icons: CSS at `vendor/bootstrap-icons/bootstrap-icons.min.css`, fonts at `vendor/bootstrap-icons/fonts/`
-- Font Awesome: CSS at `vendor/font-awesome/all.min.css`, webfonts at `vendor/font-awesome/webfonts/`
-- Lightbox2: CSS at `vendor/lightbox2/lightbox.min.css`, images at `vendor/lightbox2/images/`
+- Font Awesome: CSS at `vendor/font-awesome/css/all.min.css`, webfonts at `vendor/font-awesome/webfonts/`
+- Lightbox2: CSS at `vendor/lightbox2/css/lightbox.min.css`, images at `vendor/lightbox2/images/`
 
 ## Template Changes
 
-In `default.hbs`, replace all 7 CDN `<link>` and `<script>` tags with Ghost `{{asset "vendor/..."}}` helpers:
+In `default.hbs`, all 7 CDN `<link>` and `<script>` tags were replaced with Ghost `{{asset "vendor/..."}}` helpers:
 
 **Before (CDN):**
 ```html
@@ -73,22 +83,21 @@ In `default.hbs`, replace all 7 CDN `<link>` and `<script>` tags with Ghost `{{a
 ```html
 <link rel="stylesheet" href="{{asset "vendor/bootstrap/bootstrap.min.css"}}">
 <link rel="stylesheet" href="{{asset "vendor/bootstrap-icons/bootstrap-icons.min.css"}}">
-<link rel="stylesheet" href="{{asset "vendor/font-awesome/all.min.css"}}">
+<link rel="stylesheet" href="{{asset "vendor/font-awesome/css/all.min.css"}}">
 ...
 <script src="{{asset "vendor/bootstrap/bootstrap.bundle.min.js"}}"></script>
 <script src="{{asset "vendor/reframe/reframe.min.js"}}"></script>
-<link rel="stylesheet" href="{{asset "vendor/lightbox2/lightbox.min.css"}}">
-<script src="{{asset "vendor/lightbox2/lightbox-plus-jquery.min.js"}}"></script>
+<link rel="stylesheet" href="{{asset "vendor/lightbox2/css/lightbox.min.css"}}">
+<script src="{{asset "vendor/lightbox2/js/lightbox-plus-jquery.min.js"}}"></script>
 ```
 
-## Verification
+## Verification Checklist
 
-After implementation, confirm:
-1. No CDN requests appear in browser DevTools Network tab
-2. Icons render correctly (Bootstrap Icons, Font Awesome)
-3. Lightbox images display (close, next, prev buttons; loading spinner)
-4. Carousel and offcanvas nav still function (Bootstrap JS)
-5. Embedded videos are responsive (Reframe.js)
+- No CDN requests appear in browser DevTools Network tab
+- Icons render correctly (Bootstrap Icons, Font Awesome)
+- Lightbox images display (close, next, prev buttons; loading spinner)
+- Carousel and navbar collapse still function (Bootstrap JS)
+- Embedded videos are responsive (Reframe.js)
 
 ## Out of Scope
 
